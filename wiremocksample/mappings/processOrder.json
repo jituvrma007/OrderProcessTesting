@@ -1,0 +1,13 @@
+{
+    "request": {
+         "method": "POST",
+        "urlPath": "/processOrder"
+    },
+    "response": {
+        "body": "{{{request.body}}}",
+        "headers": {
+            "Content-Type": "application/json;"
+                  },
+        "transformers": ["response-template"]
+    }
+}

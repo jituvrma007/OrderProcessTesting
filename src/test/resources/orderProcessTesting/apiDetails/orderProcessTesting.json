@@ -1,0 +1,11 @@
+[
+  {
+    "controllerName": "orderProcess",
+    "apiList": [
+      {
+        "apiName": "processOrder",
+        "endpoint": "/processOrder"
+      }
+    ]
+  }
+]
