@@ -16,38 +16,13 @@ import static com.orderProcessTesting.testware.utility.ExtentManager.writeReport
 public class ProcessOrderAPITestScenarios extends ApiBaseSetup {
     private String processOrder = "";
 
-    @Test(dataProvider = "sendOrderDetailsUpdates", description = "To test, updates can be sent", groups = { "Smoke"})
-    public void PostAPI_sendOrderDetailsUpdates(ProcessOrderModel processOrderModel) {
-        response = requestExecutor.executePostRequest(request, processOrder, processOrderModel.toJSONString());
-        testSteps.log(Status.INFO, "response "+response.getBody().asPrettyString());
-
-    }
-
-    @Test(dataProvider = "sendOrderDetailsUpdates", description = "processOrder api response schema should match with specification format")
-    public void PostAPI_processOrderApiResponseSchemaValidation(ProcessOrderModel processOrderModel) {
-        response = requestExecutor.executePostRequest(request, "/processOrder", processOrderModel.toJSONString());
-
-        Assert.assertTrue(responseValidator.schemaValidator(response,
-                        Constants.SCHEMA_FILE_PATH + "ProcessOrderApiResponseSchema.json"),
-                "Schema validation is getting failed !");
-    }
-
-    @DataProvider(name = "sendOrderDetailsUpdates")
-    public Object[][] sendOrderDetailsUpdates() {
-        return new Object[][]{
-                {new ProcessOrderModel().withOrderDetailsDefaultData()},
-                {new ProcessOrderModel().withOrderDetailsDefaultData()}
-        };
-    }
-
     @BeforeClass(alwaysRun = true)
     public void beforeClass() {
         request = requestExecutor.returnRequestSpecification(common.
-                returnConcatenatedBaseURI("protocol", "baseUrl"));
+                returnConcatenatedBaseURI("protocol", "baseUrl")); //creating the server url
         processOrder = apiDetailReader.returnCompleteUri
-                ("orderProcessTesting", "orderProcess", "processOrder");
-
-        testReport = extent.createTest(this.getClass().getSimpleName());
+                ("orderProcessTesting", "orderProcess", "processOrder"); // creating the endpoint
+        testReport = extent.createTest(this.getClass().getSimpleName()); // setting up the extent report
 
     }
 
@@ -61,4 +36,26 @@ public class ProcessOrderAPITestScenarios extends ApiBaseSetup {
         writeReportAfterMethod(result, testSteps);
     }
 
+    @DataProvider(name = "sendOrderDetailsUpdates")
+    public Object[][] sendOrderDetailsUpdates() {
+        return new Object[][]{
+                {new ProcessOrderModel().withOrderDetailsDefaultData()} // setting up a default way of testData
+                                                                        // We can change the values here as well.
+        };
+    }
+
+    @Test(dataProvider = "sendOrderDetailsUpdates", description = "To test, updates can be sent", groups = { "Smoke"})
+    public void PostAPI_sendOrderDetailsUpdates(ProcessOrderModel processOrderModel) {
+        response = requestExecutor.executePostRequest(request, processOrder, processOrderModel.toJSONString());
+        testSteps.log(Status.INFO, "response "+response.getBody().asPrettyString());
+    }
+
+    @Test(dataProvider = "sendOrderDetailsUpdates", description = "processOrder api response schema should match with specification format")
+    public void PostAPI_processOrderApiResponseSchemaValidation(ProcessOrderModel processOrderModel) {
+        response = requestExecutor.executePostRequest(request, "/processOrder", processOrderModel.toJSONString());
+
+        Assert.assertTrue(responseValidator.schemaValidator(response,
+                        Constants.SCHEMA_FILE_PATH + "ProcessOrderApiResponseSchema.json"),
+                "Schema validation is getting failed !");
+    }
 }
