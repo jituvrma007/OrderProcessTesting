@@ -44,10 +44,18 @@ public class ProcessOrderAPITestScenarios extends ApiBaseSetup {
         };
     }
 
-    @Test(dataProvider = "sendOrderDetailsUpdates", description = "To test, updates can be sent", groups = { "Smoke"})
+    @Test(dataProvider = "sendOrderDetailsUpdates", description = "To test, response returns updated 'orderStatus' and 'lastUpdatedTimestamp'")
     public void PostAPI_sendOrderDetailsUpdates(ProcessOrderModel processOrderModel) {
         response = requestExecutor.executePostRequest(request, processOrder, processOrderModel.toJSONString());
         testSteps.log(Status.INFO, "response "+response.getBody().asPrettyString());
+
+        Assert.assertEquals(response.getStatusCode(), 200, "statusCode does not matched");
+
+        Assert.assertEquals(responseValidator.jsonStringValue(response,"$.orderStatus"),
+                processOrderModel.getOrderStatus(), "response does not returns the correct orderStatus");
+
+        Assert.assertEquals(responseValidator.jsonStringValue(response,"$.lastUpdatedTimestamp"),
+                processOrderModel.getLastUpdatedTimestamp(), "response does not returns the correct lastUpdatedTimestamp");
     }
 
     @Test(dataProvider = "sendOrderDetailsUpdates", description = "processOrder api response schema should match with specification format")

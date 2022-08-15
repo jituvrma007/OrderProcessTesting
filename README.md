@@ -39,7 +39,8 @@ Here are the dependencies used in the project for development & testing perspect
 * [RestAssured](http://rest-assured.io/) - Accessing the APIs Response
 * [TestNG](https://testng.org/doc/) - Unit Testing framework for Java 
 * [ExtentReports](http://extentreports.com/) - Reporting framework for our tests
-* [WireMock](https://wiremock.org/#open-source-get-started) - Mocking framework for "/processOrder" Api
+* [WireMock](https://wiremock.org/#open-source-get-started) - Api request/response mocking framework for "/processOrder" Api
+* [MockLab](https://orderprocesstesting.mocklab.io/processOrder) - On cloud stubbing/mocking framework for "/processOrder" Api
 
 
 ## Solution include
@@ -86,9 +87,10 @@ The below steps will get you a copy of the project up and running, on your local
 6) Above command will build the project along with test cases.
 
 ## Running the test cases on MockLab environment.
-1. For stopping the server, navigate to terminal where server is running and then do "ctrl+c". This will stop the server,however this step is optional.
-2. Navigate to the respective cloned directory.
-3. Run below commands to configure "HOST" variable as "dev" in command prompt or in edit configuration (if running via IDE). 
+Note - For stopping the wireMock server, navigate to terminal where server is running and then do "ctrl+c". This will stop the server,however this step is purely optional. So, irrespective of our wiremock server is running, we will target "Mocklab" server.
+
+1. Navigate to the respective cloned directory.
+2. Run below commands to configure "HOST" variable as "dev" in command prompt or in edit configuration (if running via IDE). 
 ```
 => set HOST = dev 
 ```
@@ -108,15 +110,10 @@ The below steps will get you a copy of the project up and running, on your local
 Here are a below steps to get a human-readable html report.
 ```
 1) Navigate to respective directory where the project is stored locally.
-
 2) Navigate to /executionReports directory.
-
 3) Find the logs inside "/generatedLogs" directory.
-
 4) Find the html based gradleReport inside "/gradleReports" directory.
-
 5) Find the html based extentReport inside "/extentReport" directory.
-
 6) Find the html based extentReport inside "/testNGReport" directory.
 ```
 ![image](https://user-images.githubusercontent.com/66662969/184699701-5201c7b1-c3c0-4653-853b-43e27a240277.png)

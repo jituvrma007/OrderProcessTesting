@@ -16,8 +16,8 @@ public class ApiBaseSetup {
         public RequestExecutor requestExecutor = new RequestExecutor();
         public ResponseValidator responseValidator = new ResponseValidator();
         public ApiDetailReader apiDetailReader = new ApiDetailReader();
-        public Logger log = LoggerFactory.getLogger(this.getClass());
 
+        public Logger log = LoggerFactory.getLogger(this.getClass());
 
         public ExtentReports extent = ExtentManager.getInstance();
         public ExtentTest testReport;

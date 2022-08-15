@@ -19,15 +19,13 @@ public class RequestExecutor {
 		return requestSpecification;
 	}
 
-	public Response executeGetRequest(RequestSpecification requestSpecification, String apiEndPoint) {
-		response = requestSpecification.get(apiEndPoint).then().extract().response();
-		log.info("\n"+ response.getBody().asPrettyString()+ "\n");
-		return response;
-		}
-
-
 	public Response executePostRequest(RequestSpecification requestSpecification, String apiEndPoint,  Object payload) {
+
+		log.info ("apiEndPoint :: "+ apiEndPoint+ "\n");
+		log.info ("payload :: "+ payload+ "\n");
+
 		response =  requestSpecification.contentType(ContentType.JSON).body(payload).post(apiEndPoint).then().extract().response();
+
 		log.info("\n"+ response.getBody().asPrettyString()+ "\n");
 		return response;
 	}
