@@ -7,16 +7,6 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 
-# These are some examples of commonly ignored file patterns.
-# Exclude all files and non-hidden directories.
-/*
-
-# Include all dotfiles.
-!.*
-
-# Exclude all hidden directories.
-.*/
-
 # Include the upper directory.
 !/.vim
 

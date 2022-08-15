@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "integer"
+    },
+    "orderDescription": {
+      "type": "string"
+    },
+    "orderStatus": {
+      "type": "string"
+    },
+    "lastUpdatedTimestamp": {
+      "type": "string"
+    },
+    "specialOrder": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "orderId",
+    "orderDescription",
+    "orderStatus",
+    "lastUpdatedTimestamp",
+    "specialOrder"
+  ]
+}
