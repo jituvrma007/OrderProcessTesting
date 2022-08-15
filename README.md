@@ -77,14 +77,13 @@ The below steps will get you a copy of the project up and running, on your local
 => java -jar wiremock-jre8-standalone-2.33.2.jar --global-response-templating --verbose
 ```
 4) If you something like below text on terminal, "wireMock" Server ran successfully locally.
+![image](https://user-images.githubusercontent.com/66662969/184700201-b9dd8bf0-9a38-41f3-b59d-d712f935b9d4.png)
 
 5) Don't close this terminal, and open a new terminal and then in the new terminal run below command -
 ```
 => gradlew test
 ````
 6) Above command will build the project along with test cases.
-7) If you something like below text on terminal, means project ran successfully locally. 
-
 
 ## Running the test cases on MockLab environment.
 1. For stopping the server, navigate to terminal where server is running and then do "ctrl+c". This will stop the server,however this step is optional.
@@ -93,6 +92,8 @@ The below steps will get you a copy of the project up and running, on your local
 ```
 => set HOST = dev 
 ```
+![image](https://user-images.githubusercontent.com/66662969/184699912-dd75588f-a3f1-4580-8c8d-c4fe4f27ceed.png)
+
 3. Please use same terminal to execute the test scenarios. 
 4. Our tests will target on "Mocklab" environment. 
 
@@ -107,10 +108,17 @@ The below steps will get you a copy of the project up and running, on your local
 Here are a below steps to get a human-readable html report.
 ```
 1) Navigate to respective directory where the project is stored locally.
+
 2) Navigate to /executionReports directory.
+
 3) Find the logs inside "/generatedLogs" directory.
+
 4) Find the html based gradleReport inside "/gradleReports" directory.
+
 5) Find the html based extentReport inside "/extentReport" directory.
+
 6) Find the html based extentReport inside "/testNGReport" directory.
 ```
+![image](https://user-images.githubusercontent.com/66662969/184699701-5201c7b1-c3c0-4653-853b-43e27a240277.png)
+
 
