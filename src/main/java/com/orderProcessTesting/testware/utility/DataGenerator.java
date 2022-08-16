@@ -23,7 +23,6 @@ public class DataGenerator {
 			sb.append(aphaNumericString.charAt(rd.nextInt(aphaNumericString.length())));
 			if(i%5==0) {
 				sb.append(" ");
-
 			}
 		}
 		return sb.toString();
@@ -31,7 +30,7 @@ public class DataGenerator {
 
 
 	public static String generateRandomStatus() {
-		String[] orderStatus = {"OrderConfirmed","AcceptByRestaurant","OrderPreparing", "DeliveryAgentAssigned",
+		String[] orderStatus = {"OrderConfirmed","AcceptedByRestaurant","OrderPreparing", "DeliveryAgentAssigned",
 								"ReadyForPickup", "OutForDelivery","Delivered"};
 		return orderStatus[(int) (Math.random() * orderStatus.length)];
 	}

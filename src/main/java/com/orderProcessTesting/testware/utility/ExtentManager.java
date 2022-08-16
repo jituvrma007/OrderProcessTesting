@@ -55,7 +55,6 @@ public class ExtentManager {
             testSteps.log(Status.PASS, "Test Passed");
         } else if (result.getStatus() == ITestResult.FAILURE) {
             testSteps.log(Status.FAIL, "Test Failed");
-
         } else if (result.getStatus() == ITestResult.SKIP) {
             testSteps.log(Status.SKIP, "Test Skipped");
         }

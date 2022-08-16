@@ -36,18 +36,20 @@ public class ProcessOrderAPITestScenarios extends ApiBaseSetup {
         writeReportAfterMethod(result, testSteps);
     }
 
-    @DataProvider(name = "sendOrderDetailsUpdates")
-    public Object[][] sendOrderDetailsUpdates() {
+    @DataProvider(name = "sendNewOrderDetails")
+    public Object[][] sendNewOrderDetails() {
         return new Object[][]{
                 {new ProcessOrderModel().withOrderDetailsDefaultData()} // setting up a default way of testData
                                                                         // We can change the values here as well.
         };
     }
 
-    @Test(dataProvider = "sendOrderDetailsUpdates", description = "To test, response returns updated 'orderStatus' and 'lastUpdatedTimestamp'")
+    @Test(dataProvider = "sendNewOrderDetails", description = "To test, response returns the new 'orderStatus' and 'lastUpdatedTimestamp'")
     public void PostAPI_sendOrderDetailsUpdates(ProcessOrderModel processOrderModel) {
+
+        testSteps.log(Status.INFO, "Going to hit the api '"+processOrder+ "' with request body as :: " +response.getBody().asPrettyString());
         response = requestExecutor.executePostRequest(request, processOrder, processOrderModel.toJSONString());
-        testSteps.log(Status.INFO, "response "+response.getBody().asPrettyString());
+        testSteps.log(Status.INFO, "Received response as :: "+response.getBody().asPrettyString());
 
         Assert.assertEquals(response.getStatusCode(), 200, "statusCode does not matched");
 
@@ -58,7 +60,7 @@ public class ProcessOrderAPITestScenarios extends ApiBaseSetup {
                 processOrderModel.getLastUpdatedTimestamp(), "response does not returns the correct lastUpdatedTimestamp");
     }
 
-    @Test(dataProvider = "sendOrderDetailsUpdates", description = "processOrder api response schema should match with specification format")
+    @Test(dataProvider = "sendNewOrderDetails", description = "processOrder api response schema should match with specification format")
     public void PostAPI_processOrderApiResponseSchemaValidation(ProcessOrderModel processOrderModel) {
         response = requestExecutor.executePostRequest(request, "/processOrder", processOrderModel.toJSONString());
 
